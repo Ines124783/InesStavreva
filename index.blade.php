@@ -87,7 +87,6 @@
     </div>
 </div>
 
-{{-- Страниране --}}
 <div class="mt-3">
     {{ $reservations->links() }}
 </div>
