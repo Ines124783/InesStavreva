@@ -27,7 +27,6 @@
 </head>
 <body>
 
-{{-- Навигационно меню --}}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
@@ -89,10 +88,8 @@
     </div>
 </nav>
 
-{{-- Основно съдържание --}}
 <div class="container mt-4">
 
-    {{-- Съобщения за успех --}}
     @if(session()->get('success'))
         <div class="alert alert-success alert-dismissible fade show">
             <i class="fas fa-check-circle me-2"></i>{{ session()->get('success') }}
@@ -100,7 +97,6 @@
         </div>
     @endif
 
-    {{-- Съобщения за грешка --}}
     @if(session()->get('error'))
         <div class="alert alert-danger alert-dismissible fade show">
             <i class="fas fa-exclamation-circle me-2"></i>{{ session()->get('error') }}
@@ -112,7 +108,6 @@
 
 </div>
 
-{{-- Footer --}}
 <footer>
     <div class="container text-center">
         <p class="mb-0">
