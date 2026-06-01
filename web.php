@@ -5,11 +5,6 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
 
-/*
-|--------------------------------------------------------------------------
-| Начална страница
-|--------------------------------------------------------------------------
-*/
 Route::get('/', function () {
     $rooms = \App\Models\Room::where('status', 'available')
         ->latest()
@@ -19,20 +14,11 @@ Route::get('/', function () {
     return view('welcome', compact('rooms'));
 })->name('home');
 
-/*
-|--------------------------------------------------------------------------
-| Маршрути за резервации — достъпни само за логнати потребители
-|--------------------------------------------------------------------------
-*/
 Route::resource('reservations', ReservationController::class)
     ->middleware('auth')
     ->names('reservations');
 
-/*
-|--------------------------------------------------------------------------
-| Маршрути за стаи и гости — само за администратори
-|--------------------------------------------------------------------------
-*/
+
 Route::resource('rooms', RoomController::class)
     ->middleware('auth')
     ->names('rooms');
