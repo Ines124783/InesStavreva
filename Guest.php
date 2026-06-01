@@ -14,17 +14,11 @@ class Guest extends Model
         'id_number',
     ];
 
-    /**
-     * Връзка с резервациите — един гост има много резервации
-     */
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
     }
 
-    /**
-     * Пълното име на госта
-     */
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
