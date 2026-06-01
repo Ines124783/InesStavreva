@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    /**
-     * Показва списък с всички резервации
-     */
+   
     public function index()
     {
         $reservations = Reservation::with(['guest', 'room'])
@@ -21,9 +19,6 @@ class ReservationController extends Controller
         return view('reservations.index', compact('reservations'));
     }
 
-    /**
-     * Показва формата за нова резервация
-     */
     public function create()
     {
         $rooms = Room::where('status', 'available')->get();
@@ -32,9 +27,6 @@ class ReservationController extends Controller
         return view('reservations.create', compact('rooms', 'guests'));
     }
 
-    /**
-     * Записва нова резервация в базата данни
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -52,9 +44,6 @@ class ReservationController extends Controller
             ->with('success', 'Резервацията е създадена успешно.');
     }
 
-    /**
-     * Показва детайли за конкретна резервация
-     */
     public function show($id)
     {
         $reservation = Reservation::with(['guest', 'room'])->findOrFail($id);
@@ -62,9 +51,6 @@ class ReservationController extends Controller
         return view('reservations.show', compact('reservation'));
     }
 
-    /**
-     * Показва формата за редактиране
-     */
     public function edit($id)
     {
         $reservation = Reservation::findOrFail($id);
@@ -81,9 +67,7 @@ class ReservationController extends Controller
         return view('reservations.edit', compact('reservation', 'rooms', 'guests'));
     }
 
-    /**
-     * Обновява съществуваща резервация
-     */
+
     public function update(Request $request, $id)
     {
         $reservation = Reservation::findOrFail($id);
@@ -106,9 +90,6 @@ class ReservationController extends Controller
             ->with('success', 'Резервацията е обновена успешно.');
     }
 
-    /**
-     * Изтрива резервация
-     */
     public function destroy($id)
     {
         $reservation = Reservation::findOrFail($id);
